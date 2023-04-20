@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import OrderPage from './OrderPage';
 import LandingPage from './LandingPage';
 import NotFoundPage from './NotFoundPage';
+import RestaurantView from './RestaurantView';
 
 import {
   createBrowserRouter,
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/order",
     element: <OrderPage/>
+  },
+  {
+    path: "/restaurant",
+    element: <RestaurantView/>
   },
   {
     path: "*",
