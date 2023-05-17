@@ -39,7 +39,7 @@ function LandingPage() {
                         </Link>
                     </Grid>
                    
-                    <Link to="/restaurant">Login as Restaurant</Link>
+                    <Link to="/menu">Login as Restaurant</Link>
                 </Grid>
             </Grid>
             </Container>

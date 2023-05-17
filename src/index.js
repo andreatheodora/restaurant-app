@@ -5,11 +5,16 @@ import OrderPage from './OrderPage';
 import LandingPage from './LandingPage';
 import NotFoundPage from './NotFoundPage';
 import RestaurantView from './RestaurantView';
+import MenuReview from './MenuReview';
+import OrderReview from './OrderReview';
+import AddMenu from './AddMenu';
+import LogInPage from './LogInPage';
 
 import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom'
+import { MenuList } from '@mui/material';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +28,22 @@ const router = createBrowserRouter([
   {
     path: "/restaurant",
     element: <RestaurantView/>
+  },
+  {
+    path: "/login",
+    element: <LogInPage/>
+  },
+  {
+    path: "/menu",
+    element: <MenuReview/>
+  },
+  {
+    path: "/orderreview",
+    element: <OrderReview/>
+  },
+  {
+    path: "/addmenu",
+    element: <AddMenu/>
   },
   {
     path: "*",

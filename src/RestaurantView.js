@@ -7,3 +7,4 @@ function RestaurantView() {
 }
 
 export default RestaurantView;
+
