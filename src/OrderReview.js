@@ -2,7 +2,7 @@ import * as React from 'react';
 import useState from "react";
 import { ThemeProvider } from '@emotion/react';
 import theme from "./theme";
-import { Container, Box, CssBaseline, Stack, Tab, Tabs, Typography, Grid, Switch } from "@mui/material";
+import { Container, Box, Button, CssBaseline, Stack, Tab, Tabs, Typography, Grid, Switch } from "@mui/material";
 import { Link, useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Collapse from '@mui/material/Collapse';
@@ -150,6 +150,11 @@ export default function OrderReview() {
                     ))}
                     </TableBody>
                 </Table>
+                <Grid container direction='row' justifyContent='flex-end' gap={4}>
+                    <Link to="/menu">
+                      <Button variant="contained">Back</Button>
+                    </Link>
+                </Grid>
                 </TableContainer>
                 
     );

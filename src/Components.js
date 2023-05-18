@@ -125,7 +125,7 @@ function MenuItemStaff(props) {
                         <Title content={props.name}/>
                         <Price content={props.price}/>
                     </Stack>
-                    <Typography fontSize={12}>Description of food.</Typography>
+                    <Typography fontSize={12}>Description</Typography>
                     <Box height='1.2rem'/>
                     <Stack direction="row" justifyContent="space-between">  
                         <Switch defaultChecked />

@@ -6,10 +6,11 @@ import { Container, Grid, Typography, Box, Button, CssBaseline, Stack, IconButto
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { Heading, Subheading } from "./Typography"
 import restaurantbg from "./images/restaurantbg.jpg"
+import Autocomplete from '@mui/material/Autocomplete';
 import { AddMenuButton, MenuItemStaff } from "./Components";
 import { Link, useHistory } from "react-router-dom";
 
-function AddMenu() {
+function EditPayment() {
     return (
         <ThemeProvider theme={theme}>
         <CssBaseline/>
@@ -35,7 +36,7 @@ function AddMenu() {
                     <Box sx={{
                         height: '40vh'
                     }}></Box>
-                    <Heading content="Add Menu!"/>
+                    <Heading content="Edit Payment Method!"/>
                     <Box
                         component="form"
                         sx={{
@@ -44,6 +45,14 @@ function AddMenu() {
                         noValidate
                         autoComplete="off"
                         >
+
+                        <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={method}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Method" />}
+                        />
                     <div>
                         <TextField
                         id="outlined-textarea"
@@ -53,8 +62,8 @@ function AddMenu() {
                         />
                         <TextField
                         id="outlined-textarea"
-                        label="Price"
-                        placeholder="Price"
+                        label="Account Number"
+                        placeholder="Account Number"
                         multiline
                         />
                         <TextField
@@ -76,7 +85,7 @@ function AddMenu() {
                             <AddPhotoAlternateIcon sx={{ fontSize: 40 }} />
                         </IconButton>
                     </Stack>
-                    <Link to="/menu">
+                    <Link to="/paymentmethod">
                         <AddMenuButton>Submit</AddMenuButton>
                     </Link>
                 </Box>
@@ -89,5 +98,12 @@ function AddMenu() {
     );
 }
 
-export default AddMenu;
+const method = [
+    { label: 'Cash' },
+    { label: 'Qris'},
+    { label: 'Gopay'},
+    { label: 'Debit'}
+  ];
+
+export default EditPayment;
 

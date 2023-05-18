@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 import theme from "./theme";
 import { Container, Box, CssBaseline, Stack, Tab, Tabs, Typography, Grid, Switch } from "@mui/material";
 import { Link, useHistory } from "react-router-dom";
-import { Custombutton, OrderList } from "./Components";
-import restaurantbg from "./images/restaurantbg.jpg";
+import { AddMenuButton, MenuItemStaff } from "./Components";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+import cash from "./images/cash.jpeg";
+import gopay from "./images/gopay.png";
+import qris from "./images/qris.png";
+import bca from "./images/bca.png";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -33,7 +37,7 @@ TabPanel.propTypes = {
     value: PropTypes.number.isRequired
 }
 
-function PaymentMethod() {
+function MenuReview() {
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
@@ -72,6 +76,7 @@ function PaymentMethod() {
                 </Stack>
 
             </Box>
+            
             <Container 
             sx={{
                 paddingY: '1rem',
@@ -79,16 +84,27 @@ function PaymentMethod() {
             }}>
                 <TabPanel value={value} index={0}>
                     <Grid container direction='row' justifyContent='space-evenly' gap={4}>
-                        <OrderList src={restaurantbg} name="Table 1" price="10000" />
-                        <OrderList src={restaurantbg} name="Table 2" price="10000" />
-                        <OrderList src={restaurantbg} name="Table 3" price="10000" />
-                        <OrderList src={restaurantbg} name="Table 4" price="10000" />
+                        <MenuItemStaff src={cash} name="Cash"/>
+                        <MenuItemStaff src={qris} name="Qris"/>
+                        <MenuItemStaff src={gopay} name="Gopay"/>
+                        <MenuItemStaff src={bca} name="Debit"/>
                     </Grid>
                 </TabPanel>
+                
+                <Grid container direction='row' justifyContent='flex-start' gap={4}>
+                    <Link to="/addpayment">
+                        <AddMenuButton>Add</AddMenuButton>
+                    </Link>
+                    <Link to="/editpayment">
+                        <AddMenuButton>Edit</AddMenuButton>
+                    </Link>
+                </Grid>
+                
 
             </Container>
+
         </ThemeProvider> 
     );
 }
 
-export default PaymentMethod;
+export default MenuReview;

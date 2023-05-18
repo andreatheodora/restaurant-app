@@ -9,7 +9,7 @@ import restaurantbg from "./images/restaurantbg.jpg"
 import { AddMenuButton, MenuItemStaff } from "./Components";
 import { Link, useHistory } from "react-router-dom";
 
-function AddMenu() {
+function AddPayment() {
     return (
         <ThemeProvider theme={theme}>
         <CssBaseline/>
@@ -35,7 +35,7 @@ function AddMenu() {
                     <Box sx={{
                         height: '40vh'
                     }}></Box>
-                    <Heading content="Add Menu!"/>
+                    <Heading content="Add Payment Method!"/>
                     <Box
                         component="form"
                         sx={{
@@ -53,8 +53,8 @@ function AddMenu() {
                         />
                         <TextField
                         id="outlined-textarea"
-                        label="Price"
-                        placeholder="Price"
+                        label="Account Number"
+                        placeholder="Account Number"
                         multiline
                         />
                         <TextField
@@ -76,7 +76,7 @@ function AddMenu() {
                             <AddPhotoAlternateIcon sx={{ fontSize: 40 }} />
                         </IconButton>
                     </Stack>
-                    <Link to="/menu">
+                    <Link to="/paymentmethod">
                         <AddMenuButton>Submit</AddMenuButton>
                     </Link>
                 </Box>
@@ -89,5 +89,5 @@ function AddMenu() {
     );
 }
 
-export default AddMenu;
+export default AddPayment;
 

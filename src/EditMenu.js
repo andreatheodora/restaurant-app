@@ -7,6 +7,8 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { Heading, Subheading } from "./Typography"
 import restaurantbg from "./images/restaurantbg.jpg"
 import Autocomplete from '@mui/material/Autocomplete';
+import { AddMenuButton, MenuItemStaff } from "./Components";
+import { Link, useHistory } from "react-router-dom";
 
 function EditMenu() {
     return (
@@ -65,6 +67,12 @@ function EditMenu() {
                         multiline
                         />
                         <TextField
+                        id="outlined-textarea"
+                        label="Discount"
+                        placeholder="Discount"
+                        multiline
+                        />
+                        <TextField
                         id="outlined-multiline-static"
                         label="Description"
                         multiline
@@ -77,6 +85,9 @@ function EditMenu() {
                             <AddPhotoAlternateIcon sx={{ fontSize: 40 }} />
                         </IconButton>
                     </Stack>
+                    <Link to="/menu">
+                        <AddMenuButton>Submit</AddMenuButton>
+                    </Link>
                 </Box>
                 </Grid>
                

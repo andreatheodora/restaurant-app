@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom/client';
 import OrderPage from './OrderPage';
 import LandingPage from './LandingPage';
 import NotFoundPage from './NotFoundPage';
-import RestaurantView from './RestaurantView';
 import MenuReview from './MenuReview';
 import OrderReview from './OrderReview';
 import AddMenu from './AddMenu';
@@ -12,12 +11,15 @@ import LogInPage from './LogInPage';
 import PaymentMethod from './PaymentMethod';
 import SalesReport from './SalesReport';
 import EditMenu from './EditMenu';
+import AddPayment from './AddPayment';
+import EditPayment from './EditPayment';
 
 import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom'
 import { MenuList } from '@mui/material';
+//import AddPayment from './AddPayment';
 
 const router = createBrowserRouter([
   {
@@ -27,10 +29,6 @@ const router = createBrowserRouter([
   {
     path: "/order",
     element: <OrderPage/>
-  },
-  {
-    path: "/restaurant",
-    element: <RestaurantView/>
   },
   {
     path: "/login",
@@ -59,6 +57,14 @@ const router = createBrowserRouter([
   {
     path: "/salesreport",
     element: <SalesReport/>
+  },
+  {
+    path: "/addpayment",
+    element: <AddPayment/>
+  },
+  {
+    path: "/editpayment",
+    element: <EditPayment/>
   },
   {
     path: "*",
