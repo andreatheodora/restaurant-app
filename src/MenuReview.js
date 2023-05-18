@@ -115,10 +115,16 @@ function MenuReview() {
                 <TabPanel value={value} index={2}>
                     <MenuItemStaff src={teh} name="Teh Manis Panas/Dingin" price="Rp 7.500" />
                 </TabPanel>
-
-                <Link to="/addmenu">
-                    <AddMenuButton>Add menu</AddMenuButton>
-                </Link>
+                
+                <Grid container direction='row' justifyContent='flex-start' gap={4}>
+                    <Link to="/addmenu">
+                        <AddMenuButton>Add menu</AddMenuButton>
+                    </Link>
+                    <Link to="/editmenu">
+                        <AddMenuButton>Edit menu</AddMenuButton>
+                    </Link>
+                </Grid>
+                
 
             </Container>
 

@@ -122,13 +122,13 @@ function MenuItemStaff(props) {
                     paddingX: '1rem'
                 }}>
                     <Stack direction="row" justifyContent="space-between">
-                    <Title content={props.name}/>
-                    <Price content={props.price}/>
+                        <Title content={props.name}/>
+                        <Price content={props.price}/>
                     </Stack>
                     <Typography fontSize={12}>Description of food.</Typography>
                     <Box height='1.2rem'/>
-                    <Stack direction="row">  
-                    <Switch defaultChecked />
+                    <Stack direction="row" justifyContent="space-between">  
+                        <Switch defaultChecked />
                     </Stack>
                 </Box>
             </Stack>

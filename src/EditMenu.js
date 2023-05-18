@@ -6,8 +6,9 @@ import { Container, Grid, Typography, Box, Button, CssBaseline, Stack, IconButto
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { Heading, Subheading } from "./Typography"
 import restaurantbg from "./images/restaurantbg.jpg"
+import Autocomplete from '@mui/material/Autocomplete';
 
-function AddMenu() {
+function EditMenu() {
     return (
         <ThemeProvider theme={theme}>
         <CssBaseline/>
@@ -33,7 +34,7 @@ function AddMenu() {
                     <Box sx={{
                         height: '40vh'
                     }}></Box>
-                    <Heading content="Add Menu!"/>
+                    <Heading content="Edit Menu!"/>
                     <Box
                         component="form"
                         sx={{
@@ -42,6 +43,14 @@ function AddMenu() {
                         noValidate
                         autoComplete="off"
                         >
+
+                        <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={menu}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="Menu" />}
+                        />
                     <div>
                         <TextField
                         id="outlined-textarea"
@@ -78,5 +87,15 @@ function AddMenu() {
     );
 }
 
-export default AddMenu;
+const menu = [
+    { label: 'Nasi Lele Penyet' },
+    { label: 'Nasi Ayam Penyet'},
+    { label: 'Nasi Udang Penyet'},
+    { label: 'Nasi Bebek Penyet'},
+    { label: 'Nasi Putih'},
+    { label: 'Lalapan'},
+    { label: 'Teh Manis Dingin/Panas'}
+  ];
+
+export default EditMenu;
 

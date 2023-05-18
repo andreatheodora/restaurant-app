@@ -11,6 +11,7 @@ import AddMenu from './AddMenu';
 import LogInPage from './LogInPage';
 import PaymentMethod from './PaymentMethod';
 import SalesReport from './SalesReport';
+import EditMenu from './EditMenu';
 
 import {
   createBrowserRouter,
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/addmenu",
     element: <AddMenu/>
+  },
+  {
+    path: "/editmenu",
+    element: <EditMenu/>
   },
   {
     path: "/paymentmethod",
