@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import OrderPage from './OrderPage';
 import LandingPage from './LandingPage';
+import PaymentPage from './PaymentPage';
 import NotFoundPage from './NotFoundPage';
 import RestaurantView from './RestaurantView';
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/restaurant",
     element: <RestaurantView/>
+  },
+  {
+    path: "/pay",
+    element: <PaymentPage/>
   },
   {
     path: "*",

@@ -1,7 +1,7 @@
 import React from "react";
+import { useState } from "react";
 import { styled } from '@mui/material/styles';
-import { Button, Stack, Box, Divider, Typography, IconButton, Icon } from "@mui/material";
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { Button, Stack, Box, Divider, Typography, IconButton, TextField, Icon } from "@mui/material";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { Title, Price } from "./Typography";
 
@@ -20,11 +20,34 @@ const CustomButton = styled(Button)(({ theme }) => ({
         },
     }));
 
-function MenuItem(props) {
+const MenuItem = ({ item, addToCart, imgIdx }) => {
+
+    const imageList = [
+        require('./images/main/1.jpg'),
+        require('./images/main/2.jpg'),
+        require('./images/main/3.jpg'),
+        require('./images/main/4.jpg'),
+        require('./images/main/5.jpg'),
+        require('./images/additional/1.jpg'),
+        require('./images/additional/2.jpg'),
+        require('./images/drinks/1.jpg'),
+    ]
+
+    const [notes, setNotes] = useState("")
+
+    const testImg = <img src={imageList[imgIdx]}
+        style={{
+        width: '100%',
+        maxHeight: '100%',
+        objectFit: 'cover',
+        borderRadius: '5px',
+        border: '0.5px solid gray'
+    }}
+    />
+
     return (
         <Box sx={{
             width: '250px',
-            height: '300px',
             borderRadius: '8px',
             overflow: 'hidden',
             boxShadow: '0 2px 4px rgba(0,0,0,0.3)'
@@ -36,36 +59,50 @@ function MenuItem(props) {
                     overflow: 'hidden',
                     padding: '0.75rem'
                 }}>
-                    <img src={props.src} style={{
-                        width: '100%',
-                        maxHeight: '100%',
-                        objectFit: 'cover',
-                        borderRadius: '5px',
-                        border: '0.5px solid gray'
-                    }}></img>
-
+                    {testImg}
                 </Box>
                 <Divider/>
                 <Box sx={{
-                    height:'100px',
                     paddingTop: '0.5rem',
                     paddingX: '1rem'
                 }}>
                     <Stack direction="row" justifyContent="space-between">
-                    <Title content={props.name}/>
-                    <Price content={props.price}/>
+                    <Title content={item.name}/>
+                    <Price content={item.price}/>
                     </Stack>
-                    <Typography fontSize={12}>Description of food.</Typography>
+                    <Typography fontSize={12}>{item.description}</Typography>
                     <Box height='1.2rem'/>
                     <Stack direction="row">  
-                        <IconButton sx={{ padding:0 
-                        }}>
-                            <RemoveCircleOutlineIcon/>
-                        </IconButton>
-                        <Typography>{props.amount}</Typography>
-                        <IconButton sx={{ padding:0 
-                        }}>                           
-                            <AddCircleOutlineIcon/>
+
+                    <Box
+                    component="form"
+                    sx={{
+                        '& .MuiTextField-root': { marginRight: 1, marginBottom: 1 },
+                        '& .MuiInputLabel-root': {
+                            fontSize: '12px',
+                            zIndex: '-3'
+                        },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    >
+                        <TextField
+                        label="Notes"
+                        id="outlined-size-small"
+                        size="small"
+                        value={notes}
+                        onChange={(event) => {
+                          setNotes(event.target.value);
+                        }}
+                        />
+                        </Box>
+                        <IconButton 
+                        onClick={()=> {
+                            addToCart(item, notes)
+                            setNotes("")
+                        }}
+                        sx={{ padding:0 }}>                           
+                        <AddCircleOutlineIcon/>
                         </IconButton>
                     </Stack>
                 </Box>
@@ -73,6 +110,18 @@ function MenuItem(props) {
         </Box>
     );
 }
+/*
+const MenuItem = ({ item, addToCart }) => {
+    return (
+        <div>
+            <h3>{item.name}</h3>
+            <h3>{item.price}</h3>
+            <h3>{item.description}</h3>
+            <button onClick={()=> addToCart(item)}>Add to Cart</button>
+        </div>
+    )
+}
+*/
 
 export { CustomButton, MenuItem }  
 
