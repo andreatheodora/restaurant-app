@@ -5,8 +5,15 @@ import theme from "./theme";
 import { Container, Box, CssBaseline, Stack, Tab, Tabs, Typography, Grid, Switch } from "@mui/material";
 import { Link, useHistory } from "react-router-dom";
 import { AddMenuButton, MenuItemStaff } from "./Components";
-import restaurantbg from "./images/restaurantbg.jpg";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+import ayam from "./images/ayam.jpeg";
+import bebek from "./images/bebek.jpeg";
+import lele from "./images/lele.jpeg";
+import udang from "./images/udang.jpeg";
+import nasiputih from "./images/nasiputih.jpeg";
+import lalapan from "./images/lalapan.jpeg";
+import teh from "./images/teh.jpeg";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -80,9 +87,8 @@ function MenuReview() {
                     <Tabs value={value} onChange={handleChange}
                     indicatorColor="none">
                         <Tab label="Main" index={0} style={value == 0 ? activeTab : {}}></Tab>
-                        <Tab label="Appetizer" index={1} style={value == 1 ? activeTab : {}}></Tab>
+                        <Tab label="additional menu" index={1} style={value == 1 ? activeTab : {}}></Tab>
                         <Tab label="Beverage" index={2} style={value == 2 ? activeTab : {}}></Tab>
-                        <Tab label="Dessert" index={3} style={value == 3 ? activeTab : {}}></Tab>
                     </Tabs>
                 </Stack>
 
@@ -94,20 +100,20 @@ function MenuReview() {
             }}>
                 <TabPanel value={value} index={0}>
                     <Grid container direction='row' justifyContent='space-evenly' gap={4}>
-                        <MenuItemStaff src={restaurantbg} name="Aglio Olio" price="10000" />
-                        <MenuItemStaff src={restaurantbg} name="Aglio Olio" price="10000" />
-                        <MenuItemStaff src={restaurantbg} name="Aglio Olio" price="10000" />
-                        <MenuItemStaff src={restaurantbg} name="Aglio Olio" price="10000" />
+                        <MenuItemStaff src={lele} name="Nasi Lele Penyet" price="Rp 28.750" />
+                        <MenuItemStaff src={bebek} name="Nasi Bebek Penyet" price="Rp 43.750" />
+                        <MenuItemStaff src={udang} name="Nasi Udang Penyet" price="Rp 35.000" />
+                        <MenuItemStaff src={ayam} name="Nasi Ayam Penyet" price="Rp 31.875" />
                     </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <MenuItemStaff src={restaurantbg} name="Calamari" price="10000" />
+                    <Grid container direction='row' justifyContent='flex-start' gap={4}>
+                        <MenuItemStaff src={nasiputih} name="Nasi Putih" price="Rp 9.375" />
+                        <MenuItemStaff src={lalapan} name="Lalapan" price="Rp 12.500" />
+                    </Grid>
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <MenuItemStaff src={restaurantbg} name="Chocolate milkshake" price="10000" />
-                </TabPanel>
-                <TabPanel value={value} index={3}>
-                    <MenuItemStaff src={restaurantbg} name="Panna cotta" price="10000" />
+                    <MenuItemStaff src={teh} name="Teh Manis Panas/Dingin" price="Rp 7.500" />
                 </TabPanel>
 
                 <Link to="/addmenu">
