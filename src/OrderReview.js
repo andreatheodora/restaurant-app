@@ -1,94 +1,157 @@
-import { React, useState } from "react";
+import * as React from 'react';
+import useState from "react";
 import { ThemeProvider } from '@emotion/react';
-import PropTypes from 'prop-types';
 import theme from "./theme";
 import { Container, Box, CssBaseline, Stack, Tab, Tabs, Typography, Grid, Switch } from "@mui/material";
 import { Link, useHistory } from "react-router-dom";
-import { Custombutton, OrderList } from "./Components";
-import restaurantbg from "./images/restaurantbg.jpg";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import PropTypes from 'prop-types';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Heading, Subheading } from "./Typography"
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
 
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`tabpanel-${index}`}
-        >
-            {value === index && (
-                <Box sx={{ p: 3}}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-
-        </div>
-    );
+function createData(orderid, date, table, totalprice, status, price) {
+  return {
+    orderid,
+    date,
+    table,
+    totalprice,
+    status,
+    price,
+    order: [
+      {
+        food: 'Nasi Ayam Penyet',
+        amount: 2,
+      },
+      {
+        food: 'Nasi Bebek Penyet',
+        amount: 1,
+      },
+      {
+        food: 'Teh Manis Dingin',
+        amount: 3,
+      },
+    ],
+  };
 }
 
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired
-}
+function Row(props) {
+  const { row } = props;
+  const [open, setOpen] = React.useState(false);
 
-function OrederRiview() {
-    const [value, setValue] = useState(0);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue)
-    };
-
-    const activeTab = {
-        backgroundColor:'white',
-        height:'3rem',
-        borderRadius: '20px 20px 0 0'
-    }
-
-    return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline/>
-            <Box sx={{
-                backgroundColor: theme.palette.primary.light,
-                paddingLeft: '2rem',
-            }}>
-                <Stack direction="row">
-                    <Tabs value={value} onChange={handleChange}
-                    indicatorColor="none">
-                        <Link to="/menu">
-                        <Tab label="Menu"></Tab>
-                        </Link>
-                        <Link to="/orderreview">
-                        <Tab label="Orders" style={value == 0 ? activeTab : {}}></Tab>
-                        </Link>
-                        <Link to="/paymentmethod">
-                        <Tab label="Payment Method"></Tab>
-                        </Link>
-                        <Link to="/salesreport">
-                        <Tab label="Sales Report"></Tab>
-                        </Link>
-                    </Tabs>
-                </Stack>
-
+  return (
+    <React.Fragment>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+        <TableCell>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell component="th" scope="row">
+          {row.orderid}
+        </TableCell>
+        <TableCell align="right">{row.date}</TableCell>
+        <TableCell align="right">{row.table}</TableCell>
+        <TableCell align="right">{row.totalprice}</TableCell>
+        <TableCell align="right">{row.status}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Typography variant="h6" gutterBottom component="div">
+                Order
+              </Typography>
+              <Table size="small" aria-label="purchases">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Food</TableCell>
+                    <TableCell align="center">Amount</TableCell>
+                    <TableCell align="center">Price (Rp)</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {row.order.map((orderRow) => (
+                    <TableRow key={orderRow.date}>
+                      <TableCell>{orderRow.food}</TableCell>
+                      <TableCell align="center">{orderRow.amount}</TableCell>
+                      <TableCell align="center">
+                        {Math.round(orderRow.amount * row.price)}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </Box>
-            <Container 
-            sx={{
-                paddingY: '1rem',
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </React.Fragment>
+  );
+}
 
-            }}>
-                <TabPanel value={value} index={0}>
-                    <Grid container direction='row' justifyContent='space-evenly' gap={4}>
-                        <OrderList src={restaurantbg} name="Table 1" price="10000" />
-                        <OrderList src={restaurantbg} name="Table 2" price="10000" />
-                        <OrderList src={restaurantbg} name="Table 3" price="10000" />
-                        <OrderList src={restaurantbg} name="Table 4" price="10000" />
-                    </Grid>
-                </TabPanel>
+Row.propTypes = {
+  row: PropTypes.shape({
+    date: PropTypes.string.isRequired,
+    table: PropTypes.string.isRequired,
+    totalprice: PropTypes.string.isRequired,
+    order: PropTypes.arrayOf(
+      PropTypes.shape({
+        amount: PropTypes.number.isRequired,
+        food: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+    orderid: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
-            </Container>
-        </ThemeProvider> 
+const rows = [
+  createData('1', '29/12/2023', 'Table 1', 'Rp 300.000', 'done', 50000),
+  createData('2', '29/12/2023', 'Table 2', 'Rp 200.000', 'done', 40000),
+  createData('3', '29/12/2023', 'Table 2', 'Rp 100.000', 'on process', 40000),
+  createData('4', '29/12/2023', 'Table 3', 'Rp 400.000', 'on process', 30000),
+  createData('5', '29/12/2023', 'Table 8', 'Rp 250.000', 'on process', 45000),
+];
+
+export default function OrderReview() {
+    return (
+     
+            <TableContainer component={Paper}>
+                <Heading content="Orders"/>
+                <Table aria-label="collapsible table">
+                    <TableHead>
+                    <TableRow>
+                        <TableCell />
+                        <TableCell>OrderID</TableCell>
+                        <TableCell align="right">Date</TableCell>
+                        <TableCell align="right">Table</TableCell>
+                        <TableCell align="right">Total Price</TableCell>
+                        <TableCell align="right">Status</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {rows.map((row) => (
+                        <Row key={row.orderid} row={row} />
+                    ))}
+                    </TableBody>
+                </Table>
+                </TableContainer>
+                
     );
 }
 
-export default OrederRiview;
