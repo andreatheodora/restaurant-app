@@ -29,15 +29,15 @@ function createData(orderid, date, table, totalprice, status, price) {
     price,
     order: [
       {
-        food: 'Nasi Ayam Penyet',
+        item: 'Nasi Ayam Penyet',
         amount: 2,
       },
       {
-        food: 'Nasi Bebek Penyet',
+        item: 'Nasi Bebek Penyet',
         amount: 1,
       },
       {
-        food: 'Teh Manis Dingin',
+        item: 'Teh Manis Dingin',
         amount: 3,
       },
     ],
@@ -78,7 +78,7 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Food</TableCell>
+                    <TableCell>Item</TableCell>
                     <TableCell align="center">Amount</TableCell>
                     <TableCell align="center">Price (Rp)</TableCell>
                   </TableRow>
@@ -86,7 +86,7 @@ function Row(props) {
                 <TableBody>
                   {row.order.map((orderRow) => (
                     <TableRow key={orderRow.date}>
-                      <TableCell>{orderRow.food}</TableCell>
+                      <TableCell>{orderRow.item}</TableCell>
                       <TableCell align="center">{orderRow.amount}</TableCell>
                       <TableCell align="center">
                         {Math.round(orderRow.amount * row.price)}
@@ -111,7 +111,7 @@ Row.propTypes = {
     order: PropTypes.arrayOf(
       PropTypes.shape({
         amount: PropTypes.number.isRequired,
-        food: PropTypes.string.isRequired,
+        item: PropTypes.string.isRequired,
       }),
     ).isRequired,
     orderid: PropTypes.string.isRequired,
