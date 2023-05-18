@@ -62,6 +62,12 @@ function MenuReview() {
                         <Link to="/orderreview">
                         <Tab label="Orders"></Tab>
                         </Link>
+                        <Link to="/paymentmethod">
+                        <Tab label="Payment Method"></Tab>
+                        </Link>
+                        <Link to="/salesreport">
+                        <Tab label="Sales Report"></Tab>
+                        </Link>
                     </Tabs>
                 </Stack>
 

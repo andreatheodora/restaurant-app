@@ -9,6 +9,8 @@ import MenuReview from './MenuReview';
 import OrderReview from './OrderReview';
 import AddMenu from './AddMenu';
 import LogInPage from './LogInPage';
+import PaymentMethod from './PaymentMethod';
+import SalesReport from './SalesReport';
 
 import {
   createBrowserRouter,
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
   {
     path: "/addmenu",
     element: <AddMenu/>
+  },
+  {
+    path: "/paymentmethod",
+    element: <PaymentMethod/>
+  },
+  {
+    path: "/salesreport",
+    element: <SalesReport/>
   },
   {
     path: "*",

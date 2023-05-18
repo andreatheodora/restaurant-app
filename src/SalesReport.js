@@ -33,7 +33,7 @@ TabPanel.propTypes = {
     value: PropTypes.number.isRequired
 }
 
-function OrederRiview() {
+function SalesReport() {
     const [value, setValue] = useState(0);
 
     const handleChange = (event, newValue) => {
@@ -60,13 +60,13 @@ function OrederRiview() {
                         <Tab label="Menu"></Tab>
                         </Link>
                         <Link to="/orderreview">
-                        <Tab label="Orders" style={value == 0 ? activeTab : {}}></Tab>
+                        <Tab label="Orders"></Tab>
                         </Link>
                         <Link to="/paymentmethod">
                         <Tab label="Payment Method"></Tab>
                         </Link>
                         <Link to="/salesreport">
-                        <Tab label="Sales Report"></Tab>
+                        <Tab label="Sales Report" style={value == 0 ? activeTab : {}}></Tab>
                         </Link>
                     </Tabs>
                 </Stack>
@@ -91,4 +91,4 @@ function OrederRiview() {
     );
 }
 
-export default OrederRiview;
+export default SalesReport;
